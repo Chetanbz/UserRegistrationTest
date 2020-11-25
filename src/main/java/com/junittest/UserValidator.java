@@ -25,7 +25,7 @@ public class UserValidator {
         return  result;
     }
     public  boolean validatePassword(String inputPassword){
-        String inputPattern = "(?=.*[0-9])(?=.*[A-Z])(.{6,})";
+        String inputPattern = "(?=.*[@*&^%#-*+!])(?=.*[0-9])(?=.*[A-Z])(.{6,})";
         boolean result = inputPassword.matches(inputPattern);
         return result;
     }

@@ -75,11 +75,31 @@ public class UserValidatorTest {
         Assert.assertFalse(result);
     }
     @Test
-    public void givenFirstName_WhenNoSpace_ShouldReturnRFalse() {
+    public void givenMobile_WhenNoSpace_ShouldReturnRFalse() {
         UserValidator validator = new UserValidator();
-        boolean result = validator.validateFirstName("919637074619");
+        boolean result = validator.validateMobile("919637074619");
         Assert.assertFalse(result);
     }
+    //For Password Test
+    @Test
+    public void givenPassword_WhenProper_ShouldReturnRTrue() {
+        UserValidator validator = new UserValidator();
+        boolean result = validator.validatePassword("Chetan@1234");
+        Assert.assertTrue(result);
+    }
+    @Test
+    public void givenPassword_WhenLessThanEight_ShouldReturnRFalse() {
+        UserValidator validator = new UserValidator();
+        boolean result = validator.validatePassword("Chetan@");
+        Assert.assertFalse(result);
+    }
+    @Test
+    public void givenPassword_WhenNoSpecialChar_ShouldReturnRFalse() {
+        UserValidator validator = new UserValidator();
+        boolean result = validator.validatePassword("Chetanzambare");
+        Assert.assertFalse(result);
+    }
+
 
 
 }
