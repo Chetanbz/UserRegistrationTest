@@ -8,22 +8,153 @@ public class UserValidatorTest {
     @Test
     public void givenFirstName_WhenProper_ShouldReturnRTrue() {
         UserValidator validator = new UserValidator();
-        boolean result = validator.validateFirstName("Chetan");
-        Assert.assertTrue(result);
+        try {
+            String result = validator.validateFirstName("Chetan");
+            Assert.assertEquals("True",result);
+        } catch (UserRegistrationsException e) {
+        }
     }
     @Test
-    public void givenFirstName_WhenShort_ShouldReturnRFalse() {
+    public void givenFirstName_WhenShort_ShouldReturnShort() {
         UserValidator validator = new UserValidator();
-        boolean result = validator.validateFirstName("No");
-        Assert.assertFalse(result);
+        try {
+            String result = validator.validateFirstName("No");
+        } catch (UserRegistrationsException e) {
+            Assert.assertEquals(UserRegistrationsException.ExceptionType.ENTERED_SHORT,e.type);
+
+        }
     }
     @Test
-    public void givenFirstName_WhenSpecialCharacter_ShouldReturnRFalse() {
+    public void givenFirstName_WhenSpecialCharacter_ShouldReturnNotMatch() {
         UserValidator validator = new UserValidator();
-        boolean result = validator.validateFirstName("Chetan@");
-        Assert.assertFalse(result);
+        try {
+            String result = validator.validateFirstName("Chetan@");
+        } catch (UserRegistrationsException e) {
+            Assert.assertEquals(UserRegistrationsException.ExceptionType.ENTERED_NOT_MATCH,e.type);
+        }
     }
+    /// Last Name Check
+    @Test
+    public void givenLastName_WhenProper_ShouldReturnRTrue() {
+        UserValidator validator = new UserValidator();
+        try {
+            String result = validator.validateLastName("Chetan");
+            Assert.assertEquals("True",result);
+        } catch (UserRegistrationsException e) {
+        }
+    }
+    @Test
+    public void givenLastName_WhenShort_ShouldReturnShort() {
+        UserValidator validator = new UserValidator();
+        try {
+            String result = validator.validateLastName("No");
+        } catch (UserRegistrationsException e) {
+            Assert.assertEquals(UserRegistrationsException.ExceptionType.ENTERED_SHORT,e.type);
+
+        }
+    }
+    @Test
+    public void givenLastName_WhenSpecialCharacter_ShouldReturnNotMatch() {
+        UserValidator validator = new UserValidator();
+        try {
+            String result = validator.validateLastName("Chetan@");
+        } catch (UserRegistrationsException e) {
+            Assert.assertEquals(UserRegistrationsException.ExceptionType.ENTERED_NOT_MATCH,e.type);
+        }
+    }
+    /// Email Check
+    @Test
+    public void givenEmail_WhenProper_ShouldReturnRTrue() {
+        UserValidator validator = new UserValidator();
+        try {
+            String result = validator.validateEmail("Chetan@gmail.com");
+            Assert.assertEquals("True",result);
+        } catch (UserRegistrationsException e) {
+        }
+    }
+    @Test
+    public void givenEmail_WhenShort_ShouldReturnShort() {
+        UserValidator validator = new UserValidator();
+        try {
+            String result = validator.validateEmail("No");
+        } catch (UserRegistrationsException e) {
+            Assert.assertEquals(UserRegistrationsException.ExceptionType.ENTERED_SHORT,e.type);
+
+        }
+    }
+    @Test
+    public void givenEmail_WhenNotMatch_ShouldReturnNotMatch() {
+        UserValidator validator = new UserValidator();
+        try {
+            String result = validator.validateEmail("Chetan@.com");
+        } catch (UserRegistrationsException e) {
+            Assert.assertEquals(UserRegistrationsException.ExceptionType.ENTERED_NOT_MATCH,e.type);
+        }
+    }
+    // Mobile Check
+    @Test
+    public void givenMobile_WhenProper_ShouldReturnRTrue() {
+        UserValidator validator = new UserValidator();
+        try {
+            String result = validator.validateMobile("91 967074619");
+            Assert.assertEquals("True",result);
+        } catch (UserRegistrationsException e) {
+        }
+    }
+    @Test
+    public void givenMobile_WhenShort_ShouldReturnShort() {
+        UserValidator validator = new UserValidator();
+        try {
+            String result = validator.validateMobile("936");
+        } catch (UserRegistrationsException e) {
+            Assert.assertEquals(UserRegistrationsException.ExceptionType.ENTERED_SHORT,e.type);
+
+        }
+    }
+    @Test
+    public void givenMobile_WhenNotMatch_ShouldReturnNotMatch() {
+        UserValidator validator = new UserValidator();
+        try {
+            String result = validator.validateMobile("96e37074619");
+        } catch (UserRegistrationsException e) {
+            Assert.assertEquals(UserRegistrationsException.ExceptionType.ENTERED_NOT_MATCH,e.type);
+        }
+    }
+
+    @Test
+    public void givenPassword_WhenProper_ShouldReturnRTrue() {
+        UserValidator validator = new UserValidator();
+        try {
+            String result = validator.validatePassword("Chetan123@");
+            Assert.assertEquals("True",result);
+        } catch (UserRegistrationsException e) {
+        }
+    }
+    @Test
+    public void givenPassword_WhenShort_ShouldReturnShort() {
+        UserValidator validator = new UserValidator();
+        try {
+            String result = validator.validatePassword("ch");
+        } catch (UserRegistrationsException e) {
+            Assert.assertEquals(UserRegistrationsException.ExceptionType.ENTERED_SHORT,e.type);
+
+        }
+    }
+    @Test
+    public void givenMPassword_WhenNotMatch_ShouldReturnNotMatch() {
+        UserValidator validator = new UserValidator();
+        try {
+            String result = validator.validatePassword("Chetansddfg");
+        } catch (UserRegistrationsException e) {
+            Assert.assertEquals(UserRegistrationsException.ExceptionType.ENTERED_NOT_MATCH,e.type);
+        }
+    }
+
+
+
+
     // Last Name Check Test
+    /*
     @Test
     public void givenLastName_WhenProper_ShouldReturnRTrue() {
         UserValidator validator = new UserValidator();
@@ -100,6 +231,6 @@ public class UserValidatorTest {
         Assert.assertFalse(result);
     }
 
-
+*/
 
 }
